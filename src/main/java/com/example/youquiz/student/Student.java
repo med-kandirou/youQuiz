@@ -1,18 +1,17 @@
-package com.example.youquiz.Student;
+package com.example.youquiz.student;
 
-import com.example.youquiz.Person.Person;
+import com.example.youquiz.person.Person;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
-@NoArgsConstructor
 
+@Data
 @Entity
 @Table
+@RequiredArgsConstructor
+@NoArgsConstructor
 public class Student extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

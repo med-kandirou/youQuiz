@@ -1,4 +1,4 @@
-package com.example.youquiz.Person;
+package com.example.youquiz.person;
 
 
 import jakarta.persistence.MappedSuperclass;

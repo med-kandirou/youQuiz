@@ -1,4 +1,4 @@
-package com.example.youquiz.Student;
+package com.example.youquiz.student;
 
 import org.springframework.beans.factory.annotation.Configurable;
 import org.springframework.boot.CommandLineRunner;

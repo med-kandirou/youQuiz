@@ -1,4 +1,4 @@
-package com.example.youquiz.Student;
+package com.example.youquiz.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

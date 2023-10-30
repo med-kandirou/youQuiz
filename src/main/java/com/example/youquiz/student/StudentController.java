@@ -1,4 +1,4 @@
-package com.example.youquiz.Student;
+package com.example.youquiz.student;
 
 
 
@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/Student")
@@ -25,19 +24,23 @@ public class StudentController {
         return studentService.getStudents();
     }
 
-    /*@PostMapping()
+    @PostMapping()
     public Student add(@RequestBody Student student){
         return studentService.add(student);
-    }*/
+    }
 
-    @PostMapping()
-    public int getStudentbyId(@RequestBody Student student){
-        return student.getCode();
-        /*try {
+    @GetMapping(path = {"{studentId}"})
+    public Student getStudentbyId(@PathVariable("studentId") Integer id){
+        try {
             return studentService.getStudentbyId(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
-        }*/
+        }
+    }
+
+    @DeleteMapping(path = {"{studentId}"})
+    public String deleteStudentbyId(@PathVariable("studentId") int id){
+        return "deleted "+id;
     }
 
 }
