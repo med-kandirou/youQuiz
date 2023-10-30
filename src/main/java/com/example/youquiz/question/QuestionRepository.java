@@ -1,4 +1,8 @@
 package com.example.youquiz.question;
 
-public interface QuestionRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+
+public interface QuestionRepository extends JpaRepository<Question,Integer> {
+
 }

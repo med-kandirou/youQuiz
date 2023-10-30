@@ -20,8 +20,8 @@ public class StudentController {
     }
 
     @GetMapping()
-    public List<Student> getStudents(){
-        return studentService.getStudents();
+    public List<Student> findAll(){
+        return studentService.findAll();
     }
 
     @PostMapping()
@@ -30,16 +30,16 @@ public class StudentController {
     }
 
     @GetMapping(path = {"{studentId}"})
-    public Student getStudentbyId(@PathVariable("studentId") Integer id){
+    public Student findById(@PathVariable("studentId") Integer code){
         try {
-            return studentService.getStudentbyId(id);
+            return studentService.findById(code);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
     @DeleteMapping(path = {"{studentId}"})
-    public String deleteStudentbyId(@PathVariable("studentId") int id){
+    public String deleteById(@PathVariable("studentId") int id){
         return "deleted "+id;
     }
 

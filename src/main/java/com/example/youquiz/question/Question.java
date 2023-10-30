@@ -1,10 +1,9 @@
 package com.example.youquiz.question;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.youquiz.level.Level;
+import com.example.youquiz.subject.Subject;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -23,6 +22,13 @@ public class Question {
     @NonNull private int numberOfCorrectResponses;
     @NonNull private String questionText;
     @NonNull private String image;
+
+    @ManyToOne
+    @NonNull private Subject subject;
+
+    @ManyToOne
+    @NonNull private Level level;
+
 }
 
 

@@ -16,11 +16,11 @@ public class StudentService {
         this.studentRepository = studentRepository;
     }
 
-    public List<Student> getStudents(){
+    public List<Student> findAll(){
         return studentRepository.findAll();
     }
 
-    public Student getStudentbyId(int id) throws Exception {
+    public Student findById(int id) throws Exception {
         Optional<Student> optionalStudent=studentRepository.findById(id);
         if(optionalStudent.isPresent()){
             return optionalStudent.get();

@@ -1,5 +1,6 @@
 package com.example.youquiz.test;
 
+import com.example.youquiz.trainer.Trainer;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,8 @@ public class Test {
     @NonNull private int numberOfChances;
     @NonNull private String remarks;
     @NonNull private String instructions;
+
+    @ManyToOne
+    @NonNull private Trainer trainer;
+
 }
