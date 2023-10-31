@@ -10,7 +10,7 @@ import java.util.List;
 @Configuration
 public class StudentConfig {
     @Bean
-    CommandLineRunner commandLineRunner(StudentRepository repository){
+    CommandLineRunner commandLineRunnerStudent(StudentRepository repository){
         return args -> {
             Student student1 = new Student("John", "Doe", LocalDate.of(1995, 5, 15), "taza", LocalDate.now());
             Student student2 = new Student("med", "kandirou", LocalDate.of(1995, 5, 15), "fes", LocalDate.now());

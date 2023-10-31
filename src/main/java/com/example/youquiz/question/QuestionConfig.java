@@ -5,23 +5,25 @@ import com.example.youquiz.subject.Subject;
 import com.example.youquiz.subject.SubjectRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.List;
 
+@Configuration
 public class QuestionConfig {
     @Bean
-    CommandLineRunner commandLineRunner(QuestionRepository questionRepository){
-        return Arg->{
+     CommandLineRunner commandLineRunnerQuestion(QuestionRepository questionRepository, SubjectRepository subjectRepository) {
+        return args -> {
+            Subject s1= new Subject("java");
+            Subject s2= new Subject("js");
+            subjectRepository.saveAll(List.of(s1,s2));
             Level level = new Level();
-            Subject subject= new Subject();
             level.setId(1);
-            subject.setId(1);
-            Question q1= new Question(2,1,"what is java ?","image",subject,level);
-            Question q2= new Question(3,1,"what is spring boot ?","image",subject,level);
+            Question q1 = new Question(2, 1, "what is java ?", "image",s1,level);
+            Question q2 = new Question(3, 1, "what is spring boot ?", "image",s1,level);
             level.setId(2);
-            subject.setId(2);
-            Question q3= new Question(4,2,"what is js?","image",subject,level);
-            questionRepository.saveAll(List.of(q1,q2,q3));
+            Question q3 = new Question(4, 2, "what is js?", "image", s2, level);
+            questionRepository.saveAll(List.of(q1, q2, q3));
         };
     }
 }

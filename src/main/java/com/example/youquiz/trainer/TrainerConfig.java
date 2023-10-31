@@ -12,7 +12,7 @@ import java.util.List;
 @Configuration
 public class TrainerConfig {
     @Bean
-    CommandLineRunner commandLineRunner(TrainerRepository repository){
+    CommandLineRunner commandLineRunnerTrainer(TrainerRepository repository){
         return args -> {
             Trainer trainer1 = new Trainer("formateur", "safi", LocalDate.of(1995, 5, 15), "taza", "java");
             Trainer trainer2 = new Trainer("formateur", "youssoufia", LocalDate.of(1995, 5, 15), "fes", "javaScript");

@@ -8,7 +8,7 @@ import java.util.List;
 @Configuration
 public class LevelConfig {
     @Bean
-    CommandLineRunner commandLineRunner(LevelRepository repository){
+    CommandLineRunner commandLineRunnerLevel(LevelRepository repository){
         return args -> {
             Level level1 = new Level("description level 1",1,3);
             Level level2 = new Level("description level 2",3,6);
