@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @NonNull
     private String intitule;
 }

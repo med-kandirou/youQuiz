@@ -1,4 +1,6 @@
 package com.example.youquiz.trainer;
 
-public interface TrainerRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TrainerRepository extends JpaRepository<Trainer,Integer> {
 }

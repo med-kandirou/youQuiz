@@ -16,7 +16,7 @@ import lombok.RequiredArgsConstructor;
 public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
 
     @NonNull private int numberOfResponses;
     @NonNull private int numberOfCorrectResponses;

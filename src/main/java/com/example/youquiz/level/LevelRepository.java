@@ -1,4 +1,6 @@
 package com.example.youquiz.level;
 
-public interface LevelRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface LevelRepository extends JpaRepository<Level,Integer> {
 }
