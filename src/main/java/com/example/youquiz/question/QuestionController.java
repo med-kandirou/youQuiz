@@ -1,11 +1,8 @@
 package com.example.youquiz.question;
 
-import com.example.youquiz.student.Student;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,17 +17,42 @@ public class QuestionController {
         this.questionService=questionService;
     }
 
-    @GetMapping()
+    @GetMapping
     public List<Question> getAll(){
         return questionService.getAll();
     }
 
+    @PostMapping
+    public Question save(@RequestBody Question Question){
+        return questionService.save(Question);
+    }
+
     @GetMapping(path = {"{questionId}"})
-    public Question findById(@PathVariable("questionId") Integer id){;
+    public Question findById(@PathVariable("questionId") Integer id){
         try {
             return questionService.findById(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+    @DeleteMapping(path = {"{questionId}"})
+    public void deleteById(@PathVariable("questionId") Integer id){
+        try {
+            questionService.deleteById(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+    @GetMapping(path = {"bySubject/{subjectId}"})
+    public List<Question> findBySubjectId(@PathVariable("subjectId") Integer id){;
+        try {
+            return questionService.findBySubjectId(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

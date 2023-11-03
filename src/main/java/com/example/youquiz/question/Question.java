@@ -2,12 +2,16 @@ package com.example.youquiz.question;
 
 
 import com.example.youquiz.level.Level;
+import com.example.youquiz.response.Response;
 import com.example.youquiz.subject.Subject;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
