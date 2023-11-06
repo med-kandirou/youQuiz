@@ -20,10 +20,10 @@ public class ResponseService {
 
     public Response findById(int id) throws Exception {
         Optional<Response> optional=responseRepository.findById(id);
-        if(optional.isPresent()){
-            return optional.get();
+        if(!optional.isPresent()){
+            throw new IllegalStateException("response not found");
         }
-        throw new IllegalArgumentException("response not found");
+        return optional.get();
     }
 
 

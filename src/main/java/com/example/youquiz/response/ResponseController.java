@@ -26,20 +26,12 @@ public class ResponseController {
     }
 
     @GetMapping(path = {"{responseId}"})
-    public Response findById(@PathVariable("responseId") Integer id){
-        try {
-            return responseService.findById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public Response findById(@PathVariable("responseId") Integer id) throws Exception {
+        return responseService.findById(id);
     }
 
     @DeleteMapping(path = {"{responseId}"})
-    public void deleteById(@PathVariable("responseId") Integer id){
-        try {
-            responseService.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    public void deleteById(@PathVariable("responseId") Integer id) throws Exception{
+        responseService.deleteById(id);
     }
 }
