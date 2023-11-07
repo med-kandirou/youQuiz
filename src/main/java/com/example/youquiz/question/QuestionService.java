@@ -40,6 +40,10 @@ public class QuestionService{
         return questionRepository.findBySubjectId(subjectId);
     }
 
+    public List<Question> findByLevelId(int levelId){
+        return questionRepository.findByLevelId(levelId);
+    }
+
 }
 
 

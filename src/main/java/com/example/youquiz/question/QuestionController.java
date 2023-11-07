@@ -55,4 +55,13 @@ public class QuestionController {
         }
     }
 
+    @GetMapping(path = {"byLevel/{levelId}"})
+    public List<Question> findByLevelId(@PathVariable("levelId") Integer id){;
+        try {
+            return questionService.findByLevelId(id);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.example.youquiz.level;
 
+import com.example.youquiz.question.Question;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,6 @@ public class LevelService {
         throw new Exception("Question not found");
     }
 
-
     public void deleteById(int id){
         levelRepository.deleteById(id);
     }
@@ -35,4 +35,5 @@ public class LevelService {
     public Level save(Level level){
         return levelRepository.save(level);
     }
+
 }

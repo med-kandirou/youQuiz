@@ -22,7 +22,6 @@ public class Response {
     @NonNull
     private String textResponse;
 
-
     @ManyToMany
     private Set<Question> questions = new HashSet<>();
 }
