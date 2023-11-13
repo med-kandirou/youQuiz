@@ -9,14 +9,23 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
+@Entity
 @Data
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Embeddable
 public class Validation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @NonNull
+    private Double point;
+
     @ManyToOne
-    @NonNull private Question question;
+    @NonNull
+    private Question question;
+
     @ManyToOne
-    @NonNull private Response response;
-    @NonNull private Double point;
+    @NonNull
+    private Response response;
 }

@@ -6,8 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.lang.NonNull;
-
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -23,6 +21,6 @@ public class Level {
     @NonNull private int pointMin;
     @NonNull private int pointMax;
 
-    @OneToMany(mappedBy = "level",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "level", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<Question> questions;
 }

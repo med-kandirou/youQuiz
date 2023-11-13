@@ -1,4 +1,11 @@
 package com.example.youquiz.validation;
 
-public interface ValidationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+@Repository
+public interface ValidationRepository extends JpaRepository<Validation,Integer> {
+    List<Validation> findByQuestionId(int questionId);
 }

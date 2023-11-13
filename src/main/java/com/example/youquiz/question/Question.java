@@ -2,16 +2,12 @@ package com.example.youquiz.question;
 
 
 import com.example.youquiz.level.Level;
-import com.example.youquiz.response.Response;
 import com.example.youquiz.subject.Subject;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Data
@@ -30,9 +26,9 @@ public class Question {
     @ManyToOne
     @NonNull private Subject subject;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "level_id", nullable = false)
     @NonNull private Level level;
-
 }
 
 

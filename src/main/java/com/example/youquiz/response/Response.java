@@ -18,7 +18,7 @@ import java.util.Set;
 public class Response {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private int id;
     @NonNull
     private String textResponse;
 
