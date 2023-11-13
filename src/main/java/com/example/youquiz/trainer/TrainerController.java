@@ -1,8 +1,5 @@
 package com.example.youquiz.trainer;
 
-
-import com.example.youquiz.student.StudentDTO;
-import com.example.youquiz.student.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,23 +17,23 @@ public class TrainerController {
         this.trainerService = trainerService;
     }
 
-    @GetMapping(path = "{studentId}")
-    public ResponseEntity<StudentDTO> findById(@PathVariable int studentId) {
-        return new ResponseEntity<>(trainerService.findById(studentId), HttpStatus.OK);
+    @GetMapping(path = "{TrainerId}")
+    public ResponseEntity<TrainerDTO> findById(@PathVariable int TrainerId) {
+        return new ResponseEntity<>(trainerService.findById(TrainerId), HttpStatus.OK);
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentDTO>> findAll(){
+    public ResponseEntity<List<TrainerDTO>> findAll(){
         return new ResponseEntity<>(trainerService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<StudentDTO> save(@RequestBody StudentDTO studentDTO){
-        return new ResponseEntity<>(trainerService.save(studentDTO), HttpStatus.OK);
+    public ResponseEntity<TrainerDTO> save(@RequestBody TrainerDTO TrainerDTO){
+        return new ResponseEntity<>(trainerService.save(TrainerDTO), HttpStatus.OK);
     }
 
-    @DeleteMapping(path = "{studentId}")
-    public ResponseEntity<StudentDTO> delete(@PathVariable int studentId){
-        return new ResponseEntity<>(trainerService.deleteById(studentId), HttpStatus.OK);
+    @DeleteMapping(path = "{TrainerId}")
+    public ResponseEntity<TrainerDTO> delete(@PathVariable int TrainerId){
+        return new ResponseEntity<>(trainerService.deleteById(TrainerId), HttpStatus.OK);
     }
 }
