@@ -1,5 +1,6 @@
 package com.example.youquiz.student;
 
+import com.example.youquiz.Exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,7 @@ public class StudentService implements IStudent{
         StudentDTO studentDTO=null;
         Optional<Student> optstudent=studentRepository.findById(id);
         if(!optstudent.isPresent()){
-            throw new IllegalStateException("ressource not found");
+            throw new ResourceNotFoundException("id : "+id);
         }
         studentRepository.deleteById(id);
         studentDTO = modelMapper.map(optstudent.get(), StudentDTO.class);

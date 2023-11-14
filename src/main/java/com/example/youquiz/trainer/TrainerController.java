@@ -1,8 +1,10 @@
 package com.example.youquiz.trainer;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +30,7 @@ public class TrainerController {
     }
 
     @PostMapping
-    public ResponseEntity<TrainerDTO> save(@RequestBody TrainerDTO TrainerDTO){
+    public ResponseEntity<TrainerDTO> save(@Valid @RequestBody TrainerDTO TrainerDTO){
         return new ResponseEntity<>(trainerService.save(TrainerDTO), HttpStatus.OK);
     }
 
