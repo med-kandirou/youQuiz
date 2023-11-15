@@ -28,9 +28,9 @@ public class QuestionController {
     }
 
     @GetMapping(path = {"{questionId}"})
-    public Question findById(@PathVariable("questionId") Integer id){
+    public Question findById(@PathVariable("questionId") Integer questionId){
         try {
-            return questionService.findById(id);
+            return questionService.findById(questionId);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

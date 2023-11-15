@@ -45,12 +45,13 @@ public class TestService implements ITest{
     }
 
     @Override
-    public TestDTORes save(TestDTORes testDTORes) {
-        Test test = modelMapper.map(testDTORes, Test.class);
-        Trainer trainer = trainerRepository.findById(testDTORes.getTrainer_matricule()).orElseThrow(() -> new ResourceNotFoundException("id : " + testDTORes.getTrainer_matricule()));
+    public TestDTOReq save(TestDTOReq testDTOReq) {
+        Test test = modelMapper.map(testDTOReq, Test.class);
+        Trainer trainer = trainerRepository.findById(testDTOReq.getTrainer_matricule())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + testDTOReq.getTrainer_matricule()));
         test.setTrainer(trainer);
         testRepository.save(test);
-        return modelMapper.map(test, TestDTORes.class);
+        return modelMapper.map(test, TestDTOReq.class);
     }
 
     @Override

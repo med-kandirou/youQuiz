@@ -19,10 +19,10 @@ public class QuestionConfig {
             subjectRepository.saveAll(List.of(s1,s2));
             Level level = new Level();
             level.setId(1);
-            Question q1 = new Question(2, 1, "what is java ?", "image",s1,level);
-            Question q2 = new Question(3, 1, "what is spring boot ?", "image",s1,level);
+            Question q1 = new Question(2, 1, "what is java ?", QuestionType.TrueFalse,s1,level);
+            Question q2 = new Question(3, 1, "what is spring boot ?", QuestionType.TrueFalse,s1,level);
             level.setId(2);
-            Question q3 = new Question(4, 2, "what is js?", "image", s2, level);
+            Question q3 = new Question(4, 2, "what is js?", QuestionType.TrueFalse, s2, level);
             questionRepository.saveAll(List.of(q1, q2, q3));
         };
     }

@@ -6,7 +6,7 @@ import java.util.List;
 public interface ITest {
     List<TestDTO> findAll();
     TestDTO findById(int id);
-    TestDTORes save(TestDTORes testDTORes);
+    TestDTOReq save(TestDTOReq testDTOReq);
     TestDTO deleteById(int id);
     TestDTO update(TestDTO testDTO);
 }

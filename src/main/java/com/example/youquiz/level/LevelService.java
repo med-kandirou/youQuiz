@@ -1,39 +1,68 @@
 package com.example.youquiz.level;
 
-import com.example.youquiz.question.Question;
+
+import com.example.youquiz.Exception.ResourceNotFoundException;
+import com.example.youquiz.response.Response;
+import com.example.youquiz.response.ResponseDTO;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class LevelService {
+public class LevelService implements ILevel{
     
     @Autowired
     private LevelRepository levelRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
     private LevelService(LevelRepository levelRepository){
         this.levelRepository=levelRepository;
     }
 
-    public List<Level> getAll(){
-        return levelRepository.findAll();
+    @Override
+    public List<LevelDTO> findAll() {
+        List<Level> levels = levelRepository.findAll();
+        return levels.stream()
+                .map(level -> modelMapper.map(level, LevelDTO.class))
+                .collect(Collectors.toList());
     }
 
-    public Level findById(int id) throws Exception {
-        Optional<Level> optional=levelRepository.findById(id);
-        if(optional.isPresent()){
-            return optional.get();
-        }
-        throw new Exception("Question not found");
+    @Override
+    public LevelDTO findById(int id) {
+        Level level = levelRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
+        return modelMapper.map(level, LevelDTO.class);
     }
 
-    public void deleteById(int id){
+
+    @Override
+    public LevelDTO save(LevelDTO levelDTO) {
+        Level level= modelMapper.map(levelDTO, Level.class);
+        levelRepository.save(level);
+        return modelMapper.map(level, LevelDTO.class);
+    }
+
+    @Override
+    public LevelDTO deleteById(int id){
+        Level level = levelRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
         levelRepository.deleteById(id);
+        return modelMapper.map(level, LevelDTO.class);
     }
 
-    public Level save(Level level){
-        return levelRepository.save(level);
+    @Override
+    public LevelDTO update(LevelDTO levelDTO) {
+        Level level = levelRepository.findById(levelDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + levelDTO.getId()));
+        level.setDescription(levelDTO.getDescription());
+        level.setPointMin(levelDTO.getPointMin());
+        level.setPointMax(levelDTO.getPointMax());
+        levelRepository.save(level);
+        return modelMapper.map(level, LevelDTO.class);
     }
 
 }

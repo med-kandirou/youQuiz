@@ -19,10 +19,13 @@ public class Subject {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @NonNull
-    private String intitule;
+    private String title;
     @ManyToOne
     private Subject parent;
 
     @OneToMany(mappedBy = "subject",fetch = FetchType.EAGER)
-    private Set<Question> questions= new HashSet<>(){};
+    private List<Question> questions;
+
+    @OneToMany
+    private List<Subject> children;
 }

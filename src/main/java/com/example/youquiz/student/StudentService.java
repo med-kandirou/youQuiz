@@ -24,7 +24,6 @@ public class StudentService implements IStudent{
     @Override
     public List<StudentDTO> findAll() {
         List<Student> students = studentRepository.findAll();
-
         return students.stream()
                 .map(student -> modelMapper.map(student, StudentDTO.class))
                 .collect(Collectors.toList());

@@ -25,14 +25,15 @@ public class Question {
     @NonNull private int numberOfResponses;
     @NonNull private int numberOfCorrectResponses;
     @NonNull private String questionText;
-    @NonNull private String image;
+    @NonNull private QuestionType type;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "subject_id")
     @NonNull private Subject subject;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "level_id")
     @NonNull private Level level;
-
 
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Validation> validations;

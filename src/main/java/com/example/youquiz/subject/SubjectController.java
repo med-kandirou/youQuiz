@@ -1,7 +1,9 @@
 package com.example.youquiz.subject;
 
-import com.example.youquiz.question.Question;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,33 +19,24 @@ public class SubjectController {
         this.subjectService=subjectService;
     }
 
+    @GetMapping(path = "{subjectId}")
+    public ResponseEntity<SubjectDTOResp> findById(@PathVariable int subjectId) {
+        return new ResponseEntity<>(subjectService.findById(subjectId), HttpStatus.OK);
+    }
+
     @GetMapping
-    public List<Subject> getAll(){
-        return subjectService.getAll();
+    public ResponseEntity<List<SubjectDTOResp>> findAll(){
+        return new ResponseEntity<>(subjectService.findAll(), HttpStatus.OK);
     }
 
     @PostMapping
-    public Subject save(@RequestBody Subject subject){
-        return subjectService.save(subject);
+    public ResponseEntity<SubjectDTOReq> save(@RequestBody @Valid SubjectDTOReq subjectDTOReq){
+        return new ResponseEntity<>(subjectService.save(subjectDTOReq), HttpStatus.OK);
     }
 
-    @GetMapping(path = {"{subjectId}"})
-    public Subject findById(@PathVariable("subjectId") Integer id){
-        try {
-            return subjectService.findById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+    @DeleteMapping(path = "{subjectId}")
+    public ResponseEntity<SubjectDTOResp> delete(@PathVariable int subjectId){
+        return new ResponseEntity<>(subjectService.deleteById(subjectId), HttpStatus.OK);
     }
-
-    @DeleteMapping(path = {"{subjectId}"})
-    public void deleteById(@PathVariable("subjectId") Integer id){
-        try {
-            subjectService.deleteById(id);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
 
 }

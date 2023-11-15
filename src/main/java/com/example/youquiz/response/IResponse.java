@@ -1,6 +1,5 @@
 package com.example.youquiz.response;
 
-import com.example.youquiz.student.StudentDTO;
 
 import java.util.List;
 

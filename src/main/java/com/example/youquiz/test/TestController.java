@@ -30,8 +30,8 @@ public class TestController {
     }
 
     @PostMapping
-    public ResponseEntity<TestDTORes> save(@RequestBody @Valid TestDTORes testDTORes){
-        return new ResponseEntity<>(testService.save(testDTORes), HttpStatus.OK);
+    public ResponseEntity<TestDTOReq> save(@RequestBody @Valid TestDTOReq testDTOReq){
+        return new ResponseEntity<>(testService.save(testDTOReq), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "{testId}")

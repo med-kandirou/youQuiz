@@ -7,7 +7,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 
-public class TestDTORes {
+public class TestDTOReq {
     private int id;
     @NonNull private int successScore;
     @NonNull private boolean canViewAnswers;
@@ -15,6 +15,6 @@ public class TestDTORes {
     @NonNull private int numberOfChances;
     @NonNull private String remarks;
     @NonNull private String instructions;
-    @NonNull private int trainer_matricule; // Use trainerId instead of TrainerDTO
+    @NonNull private int trainer_matricule;
 
 }
