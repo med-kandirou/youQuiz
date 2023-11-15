@@ -1,38 +1,61 @@
 package com.example.youquiz.response;
 
+import com.example.youquiz.Exception.ResourceNotFoundException;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
-public class ResponseService {
+public class ResponseService implements IResponse{
     @Autowired
     private ResponseRepository responseRepository;
+
+    @Autowired
+    private ModelMapper modelMapper;
 
     private ResponseService(ResponseRepository responseRepository){
         this.responseRepository=responseRepository;
     }
-
-    public List<Response> getAll(){
-        return responseRepository.findAll();
+    
+    @Override
+    public List<ResponseDTO> findAll() {
+        List<Response> responses = responseRepository.findAll();
+        return responses.stream()
+                .map(response -> modelMapper.map(response, ResponseDTO.class))
+                .collect(Collectors.toList());
     }
 
-    public Response findById(int id) throws Exception {
-        Optional<Response> optional=responseRepository.findById(id);
-        if(!optional.isPresent()){
-            throw new IllegalStateException("response not found");
-        }
-        return optional.get();
+    public ResponseDTO findById(int id) {
+        Response response = responseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
+        return modelMapper.map(response, ResponseDTO.class);
+    }
+
+    @Override
+    public ResponseDTO save(ResponseDTO responseDTO) {
+        Response response= modelMapper.map(responseDTO, Response.class);
+        responseRepository.save(response);
+        return modelMapper.map(response, ResponseDTO.class);
     }
 
 
-    public void deleteById(int id){
+    public ResponseDTO deleteById(int id){
+        Response response = responseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
         responseRepository.deleteById(id);
+        return modelMapper.map(response, ResponseDTO.class);
     }
 
-    public Response save(Response response){
-        return responseRepository.save(response);
+    @Override
+    public ResponseDTO update(ResponseDTO responseDTO) {
+        Response response = responseRepository.findById(responseDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + responseDTO.getId()));
+        response.setTextResponse(responseDTO.getTextResponse());
+        responseRepository.save(response);
+        return modelMapper.map(response, ResponseDTO.class);
     }
 
 }

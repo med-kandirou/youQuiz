@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,13 +30,9 @@ public class TrainerService implements ITrainer{
 
     @Override
     public TrainerDTO findById(int id) {
-        TrainerDTO trainerDTO = null;
-        Optional<Trainer> optTrainer = trainerRepository.findById(id);
-        if (!optTrainer.isPresent()) {
-            throw new ResourceNotFoundException("id : "+id);
-        }
-        trainerDTO = modelMapper.map(optTrainer.get(), TrainerDTO.class);
-        return trainerDTO;
+        Trainer trainer = trainerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
+        return modelMapper.map(trainer, TrainerDTO.class);
     }
 
     @Override
@@ -48,18 +43,21 @@ public class TrainerService implements ITrainer{
 
     @Override
     public TrainerDTO deleteById(int id) {
-        TrainerDTO TrainerDTO=null;
-        Optional<Trainer> optTrainer=trainerRepository.findById(id);
-        if(!optTrainer.isPresent()){
-            throw new ResourceNotFoundException("id : "+id);
-        }
+        Trainer trainer = trainerRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
         trainerRepository.deleteById(id);
-        TrainerDTO = modelMapper.map(optTrainer.get(), TrainerDTO.class);
-        return TrainerDTO;
+        return modelMapper.map(trainer, TrainerDTO.class);
     }
 
     @Override
-    public TrainerDTO update(TrainerDTO TrainerDTO) {
-        return null;
+    public TrainerDTO update(TrainerDTO trainerDTO) {
+        Trainer trainer = trainerRepository.findById(trainerDTO.getMatricule())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + trainerDTO.getMatricule()));
+        trainer.setFirstName(trainerDTO.getFirstName());
+        trainer.setLastName(trainerDTO.getLastName());
+        trainer.setAdresse(trainerDTO.getAdresse());
+        trainer.setSpecialite(trainerDTO.getSpecialite());
+        trainerRepository.save(trainer);
+        return modelMapper.map(trainer, TrainerDTO.class);
     }
 }

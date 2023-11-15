@@ -38,4 +38,9 @@ public class TrainerController {
     public ResponseEntity<TrainerDTO> delete(@PathVariable int TrainerId){
         return new ResponseEntity<>(trainerService.deleteById(TrainerId), HttpStatus.OK);
     }
+
+    @PutMapping()
+    public ResponseEntity<TrainerDTO> update(@Valid @RequestBody TrainerDTO trainerDTO){
+        return new ResponseEntity<>(trainerService.update(trainerDTO), HttpStatus.OK);
+    }
 }

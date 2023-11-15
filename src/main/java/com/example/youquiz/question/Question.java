@@ -3,11 +3,15 @@ package com.example.youquiz.question;
 
 import com.example.youquiz.level.Level;
 import com.example.youquiz.subject.Subject;
+import com.example.youquiz.validation.Validation;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -27,8 +31,8 @@ public class Question {
     @NonNull private Subject subject;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "level_id", nullable = false)
     @NonNull private Level level;
+
 }
 
 

@@ -1,11 +1,6 @@
 package com.example.youquiz.response;
 
 
-import com.example.youquiz.level.Level;
-import com.example.youquiz.question.Question;
-import com.example.youquiz.question.QuestionRepository;
-import com.example.youquiz.subject.Subject;
-import com.example.youquiz.subject.SubjectRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -13,12 +13,8 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @MappedSuperclass
 public class Person {
-    @NotBlank(message = "firstName is required")
     @NonNull protected String firstName;
-    @NotBlank(message = "lastName is required")
     @NonNull protected String lastName;
-
     @NonNull protected LocalDate birthday;
-    @NotBlank(message = "adresse is required")
     @NonNull private String adresse;
 }

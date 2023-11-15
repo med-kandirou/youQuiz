@@ -1,19 +1,16 @@
 package com.example.youquiz.test;
 
 import com.example.youquiz.trainer.TrainerDTO;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import lombok.Setter;
+import lombok.*;
 
 
 @Getter
 @Setter
 @NoArgsConstructor
+@RequiredArgsConstructor
 public class TestDTO {
-    private Long id;
-    @NonNull
-    private int successScore;
+    private int id;
+    @NonNull private int successScore;
     @NonNull private boolean canViewAnswers;
     @NonNull private boolean canSeeResult;
     @NonNull private int numberOfChances;

@@ -5,9 +5,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.IllegalFormatException;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,38 +32,35 @@ public class StudentService implements IStudent{
 
     @Override
     public StudentDTO findById(int id) {
-        StudentDTO studentDTO=null;
-        Optional<Student> optstudent=studentRepository.findById(id);
-        if(!optstudent.isPresent()){
-            throw new IllegalStateException("ressource not found");
-        }
-        studentDTO = modelMapper.map(optstudent.get(), StudentDTO.class);
-        return studentDTO;
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
+        return modelMapper.map(student, StudentDTO.class);
     }
 
     @Override
     public StudentDTO save(StudentDTO studentDTO) {
         Student student= modelMapper.map(studentDTO, Student.class);
-        if(studentRepository.save(student)==null){
-            throw new IllegalStateException("error in insertion");
-        }
+        studentRepository.save(student);
         return modelMapper.map(student, StudentDTO.class);
     }
 
     @Override
     public StudentDTO deleteById(int id) {
-        StudentDTO studentDTO=null;
-        Optional<Student> optstudent=studentRepository.findById(id);
-        if(!optstudent.isPresent()){
-            throw new ResourceNotFoundException("id : "+id);
-        }
+        Student student = studentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
         studentRepository.deleteById(id);
-        studentDTO = modelMapper.map(optstudent.get(), StudentDTO.class);
-        return studentDTO;
+        return modelMapper.map(student, StudentDTO.class);
     }
 
     @Override
     public StudentDTO update(StudentDTO studentDTO) {
-        return null;
+        Student student = studentRepository.findById(studentDTO.getCode())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + studentDTO.getCode()));
+        student.setFirstName(studentDTO.getFirstName());
+        student.setLastName(studentDTO.getLastName());
+        student.setAdresse(studentDTO.getAdresse());
+        student.setDateInscription(studentDTO.getDateInscription());
+        studentRepository.save(student);
+        return modelMapper.map(student, StudentDTO.class);
     }
 }

@@ -1,12 +1,12 @@
 package com.example.youquiz.response;
 
 import com.example.youquiz.question.Question;
+import com.example.youquiz.validation.Validation;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,5 +23,5 @@ public class Response {
     private String textResponse;
 
     @ManyToMany
-    private Set<Question> questions = new HashSet<>();
+    private Set<Validation> validations = new HashSet<>();
 }
