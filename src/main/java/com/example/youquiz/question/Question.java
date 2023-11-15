@@ -11,6 +11,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -21,7 +22,6 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     @NonNull private int numberOfResponses;
     @NonNull private int numberOfCorrectResponses;
     @NonNull private String questionText;
@@ -32,6 +32,10 @@ public class Question {
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @NonNull private Level level;
+
+
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Validation> validations;
 
 }
 
