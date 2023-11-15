@@ -2,7 +2,6 @@ package com.example.youquiz.question;
 
 import com.example.youquiz.level.LevelDTO;
 import com.example.youquiz.subject.SubjectDTOReq;
-import com.example.youquiz.subject.SubjectDTOResp;
 import lombok.Getter;
 import lombok.NonNull;
 import lombok.Setter;
@@ -10,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class QuestionDTO {
+public class QuestionDTORes {
     private int id;
     @NonNull
     private int numberOfResponses;
