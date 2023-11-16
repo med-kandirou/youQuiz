@@ -17,6 +17,7 @@ public class Trainer extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int matricule;
+    @NotBlank(message = "specialite is required")
     @NonNull private String specialite;
 
     public Trainer(String firstName, String lastName, LocalDate birthday,String adresse,String specialite){

@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @RequiredArgsConstructor
 @NoArgsConstructor
 @MappedSuperclass
-public class Person {
+public abstract class Person {
     @NonNull protected String firstName;
     @NonNull protected String lastName;
     @NonNull protected LocalDate birthday;

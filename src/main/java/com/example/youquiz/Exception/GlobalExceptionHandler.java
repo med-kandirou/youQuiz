@@ -14,13 +14,6 @@ import java.util.Map;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    /*@ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleException(Exception ex) {
-        // Log the exception if needed
-        return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
-    }*/
-
-
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ResourceNotFoundException.class)
     public Map<String, String> handleResourceNotFoundException(ResourceNotFoundException ex) {
