@@ -1,8 +1,6 @@
 package com.example.youquiz.level;
 
 
-import com.example.youquiz.question.Question;
-import com.example.youquiz.trainer.TrainerDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -2,6 +2,7 @@ package com.example.youquiz.question;
 
 
 import com.example.youquiz.level.Level;
+import com.example.youquiz.media.Media;
 import com.example.youquiz.subject.Subject;
 import com.example.youquiz.validation.Validation;
 import jakarta.persistence.*;
@@ -10,9 +11,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Data
@@ -38,6 +37,8 @@ public class Question {
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Validation> validations;
 
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // Correction ici
+    private List<Media> medias;
 }
 
 
