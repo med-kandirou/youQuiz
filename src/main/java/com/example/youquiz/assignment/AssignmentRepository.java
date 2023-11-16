@@ -1,4 +1,6 @@
 package com.example.youquiz.assignment;
 
-public interface AssignmentRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface AssignmentRepository extends JpaRepository<Assignment,Integer> {
 }

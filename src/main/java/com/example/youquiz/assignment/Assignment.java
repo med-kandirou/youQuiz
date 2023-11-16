@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Table
 @NoArgsConstructor
 @RequiredArgsConstructor
-public class assignment {
+public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,10 +24,8 @@ public class assignment {
     @Transient
     @NonNull private LocalDate dure;
     @NonNull private double score;
-
     @OneToOne
     @NonNull private Trainer trainer;
-
     @OneToOne
     @NonNull private Student student;
 }
