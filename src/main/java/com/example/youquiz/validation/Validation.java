@@ -19,18 +19,14 @@ public class Validation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NonNull
+    private double point;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Response_id")
     @NonNull
     private Response response;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Question_id")
     @NonNull
     private Question question;
-
-    @Column(nullable = false)
-    @NonNull
-    private double point;
 }
