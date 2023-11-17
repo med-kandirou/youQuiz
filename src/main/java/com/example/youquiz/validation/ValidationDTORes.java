@@ -1,8 +1,7 @@
 package com.example.youquiz.validation;
 
-import com.example.youquiz.question.Question;
-import com.example.youquiz.response.Response;
-import jakarta.persistence.*;
+import com.example.youquiz.question.QuestionDTORes;
+import com.example.youquiz.response.ResponseDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -14,6 +13,6 @@ import lombok.RequiredArgsConstructor;
 public class ValidationDTORes {
     private int id;
     @NonNull private double point;
-    @NonNull private Response response;
-    @NonNull private Question question;
+    @NonNull private ResponseDTO response;
+    @NonNull private QuestionDTORes question;
 }

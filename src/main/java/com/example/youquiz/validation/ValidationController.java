@@ -46,7 +46,7 @@ public class ValidationController {
     }
 
     @DeleteMapping(path = "{validationId}")
-    public ResponseEntity<AssignementTDORes> delete(@PathVariable int validationId){
+    public ResponseEntity<ValidationDTOReq> delete(@PathVariable int validationId){
         return new ResponseEntity<>(validationService.deleteById(validationId), HttpStatus.OK);
     }
 

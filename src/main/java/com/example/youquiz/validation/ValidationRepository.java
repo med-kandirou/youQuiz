@@ -7,5 +7,5 @@ import java.util.List;
 
 @Repository
 public interface ValidationRepository extends JpaRepository<Validation,Integer> {
-    List<ValidationDTORes> findByQuestionId(int questionId);
+    List<Validation> findByQuestionId(int questionId);
 }
