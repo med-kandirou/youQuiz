@@ -1,7 +1,7 @@
 package com.example.youquiz.assignment;
 
 import com.example.youquiz.student.Student;
-import com.example.youquiz.trainer.Trainer;
+import com.example.youquiz.test.Test;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,8 +24,11 @@ public class Assignment {
     @Transient
     @NonNull private LocalDate dure;
     @NonNull private double score;
-    @OneToOne
-    @NonNull private Trainer trainer;
-    @OneToOne
-    @NonNull private Student student;
+
+    @ManyToOne
+    @JoinColumn(name = "test_id")
+    private Test test;
+    @ManyToOne
+    @JoinColumn(name = "student_id")
+    private Student student;
 }

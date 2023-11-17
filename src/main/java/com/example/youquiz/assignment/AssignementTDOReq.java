@@ -13,6 +13,6 @@ public class AssignementTDOReq {
     @NonNull private LocalDate dateStart;
     @NonNull private LocalDate dateEnd;
     @NonNull private double score;
-    @NonNull private int trainer_id;
+    @NonNull private int test_id;
     @NonNull private int student_id;
 }

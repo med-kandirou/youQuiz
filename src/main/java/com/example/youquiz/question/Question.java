@@ -4,6 +4,7 @@ package com.example.youquiz.question;
 import com.example.youquiz.level.Level;
 import com.example.youquiz.media.Media;
 import com.example.youquiz.subject.Subject;
+import com.example.youquiz.temporisation.Temporisation;
 import com.example.youquiz.validation.Validation;
 import jakarta.persistence.*;
 import lombok.Data;
@@ -37,8 +38,11 @@ public class Question {
     @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Validation> validations;
 
-    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL) // Correction ici
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Media> medias;
+
+    @OneToMany(mappedBy = "question", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Temporisation> temporisations;
 }
 
 

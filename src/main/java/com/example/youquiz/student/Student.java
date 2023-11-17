@@ -1,10 +1,12 @@
 package com.example.youquiz.student;
 
+import com.example.youquiz.assignment.Assignment;
 import com.example.youquiz.person.Person;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -17,6 +19,9 @@ public class Student extends Person {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int code;
     @NonNull private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "student", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Assignment> assignments;
 
     public Student(String firstName, String lastName, LocalDate birthday,String adresse,LocalDate dateInscription){
         super(firstName,lastName,birthday,adresse);
