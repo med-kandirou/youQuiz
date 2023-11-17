@@ -1,4 +1,6 @@
 package com.example.youquiz.temporisation;
 
-public interface TemporisationRepository {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TemporisationRepository extends JpaRepository<Temporisation,Integer> {
 }

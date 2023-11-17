@@ -7,9 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.ManyToAny;
-
-import java.time.Duration;
 
 @Entity
 @Table
@@ -20,15 +17,14 @@ public class Temporisation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @NonNull
+    private int time;
     @ManyToOne
     @NonNull
     private Test test;
     @ManyToOne
     @NonNull
     private Question question;
-    @NonNull
-    private Duration temporisation;
 }
 
 
