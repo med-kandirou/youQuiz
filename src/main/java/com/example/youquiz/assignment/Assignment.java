@@ -1,5 +1,6 @@
 package com.example.youquiz.assignment;
 
+import com.example.youquiz.answer.Answer;
 import com.example.youquiz.student.Student;
 import com.example.youquiz.test.Test;
 import jakarta.persistence.*;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
+import java.util.List;
 
 
 @Data
@@ -31,4 +33,8 @@ public class Assignment {
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
+
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Answer> answers;
 }

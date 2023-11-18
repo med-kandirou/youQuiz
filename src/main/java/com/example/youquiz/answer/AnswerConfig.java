@@ -1,16 +1,15 @@
-package com.example.youquiz.media;
+package com.example.youquiz.answer;
 
+import com.example.youquiz.media.MediaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-
 @Configuration
-public class MediaConfig {
+public class AnswerConfig {
     @Bean
-    CommandLineRunner commandLineRunnerMedia(MediaRepository repository){
+    CommandLineRunner commandLineRunnerAnswer(AnswerRepository repository){
         return args -> {
-
         };
     }
 }
