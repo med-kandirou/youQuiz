@@ -27,7 +27,7 @@ public class MediaController {
     }
 
     @PostMapping
-    public ResponseEntity<MediaDTOReq> save(@RequestBody MediaDTOReq mediaDTOReq){
+    public ResponseEntity<MediaDTOReq> save(@Valid @RequestBody MediaDTOReq mediaDTOReq){
         return new ResponseEntity<>(mediaService.save(mediaDTOReq), HttpStatus.OK);
     }
 

@@ -2,6 +2,7 @@ package com.example.youquiz.student;
 
 
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDTO> save(@RequestBody StudentDTO studentDTO){
+    public ResponseEntity<StudentDTO> save(@Valid @RequestBody StudentDTO studentDTO){
         return new ResponseEntity<>(studentService.save(studentDTO), HttpStatus.OK);
     }
 

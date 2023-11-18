@@ -1,6 +1,7 @@
 package com.example.youquiz.level;
 
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class LevelController {
     }
 
     @PostMapping
-    public ResponseEntity<LevelDTO> save(@RequestBody LevelDTO LevelDTO){
+    public ResponseEntity<LevelDTO> save(@Valid @RequestBody LevelDTO LevelDTO){
         return new ResponseEntity<>(levelService.save(LevelDTO), HttpStatus.OK);
     }
 
@@ -37,6 +38,12 @@ public class LevelController {
     @DeleteMapping(path = {"{levelId}"})
     public ResponseEntity<LevelDTO> deleteById(@PathVariable("levelId") Integer levelId){
         return new ResponseEntity<>(levelService.deleteById(levelId), HttpStatus.OK);
+    }
+
+
+    @PutMapping()
+    public ResponseEntity<LevelDTO> update(@Valid @RequestBody LevelDTO levelDTO){
+        return new ResponseEntity<>(levelService.update(levelDTO), HttpStatus.OK);
     }
 
 
