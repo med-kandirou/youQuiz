@@ -1,5 +1,6 @@
 package com.example.youquiz.response;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +29,7 @@ public class ResponseController {
     }
 
     @PostMapping
-    public ResponseEntity<ResponseDTO> save(@RequestBody ResponseDTO ResponseDTO){
+    public ResponseEntity<ResponseDTO> save(@Valid @RequestBody ResponseDTO ResponseDTO){
         return new ResponseEntity<>(responseService.save(ResponseDTO), HttpStatus.OK);
     }
 

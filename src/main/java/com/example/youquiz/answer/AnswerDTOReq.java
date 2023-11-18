@@ -1,17 +1,19 @@
 package com.example.youquiz.answer;
 
 
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 
 @Data
 @NoArgsConstructor
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class AnswerDTOReq {
     private int id;
-    @NonNull private int validation_id;
-    @NonNull private int assignment_id;
+    @NotNull(message = "validation_id is required")
+    private Integer validation_id;
+    @NotNull(message = "assignment_id is required")
+    private Integer assignment_id;
 }

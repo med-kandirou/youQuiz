@@ -2,7 +2,9 @@ package com.example.youquiz.student;
 
 import com.example.youquiz.person.Person;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
@@ -12,6 +14,8 @@ import java.time.LocalDate;
 
 public class StudentDTO extends Person {
     private int code;
-    @NotBlank(message = "Date Inscription is required")
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    @NotNull(message = "dateInscription is required")
     @NonNull private LocalDate dateInscription;
 }

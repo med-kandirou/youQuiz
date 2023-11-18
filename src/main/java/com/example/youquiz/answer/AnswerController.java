@@ -1,5 +1,6 @@
 package com.example.youquiz.answer;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AnswerController {
     }
 
     @PostMapping
-    public ResponseEntity<AnswerDTOReq> save(@RequestBody AnswerDTOReq answerDTOReq){
+    public ResponseEntity<AnswerDTOReq> save(@Valid @RequestBody AnswerDTOReq answerDTOReq){
         return new ResponseEntity<>(answerService.save(answerDTOReq), HttpStatus.OK);
     }
 

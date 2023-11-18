@@ -1,5 +1,6 @@
 package com.example.youquiz.response;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 @Getter
@@ -8,7 +9,9 @@ import lombok.*;
 @RequiredArgsConstructor
 public class ResponseDTO {
     private int id;
+
     @NonNull
+    @NotBlank(message = "Text response is required")
     private String textResponse;
 
 }

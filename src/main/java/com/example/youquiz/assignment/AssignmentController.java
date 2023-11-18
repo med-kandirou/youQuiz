@@ -1,5 +1,6 @@
 package com.example.youquiz.assignment;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,7 +24,7 @@ public class AssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity<AssignementTDOReq> save(@RequestBody AssignementTDOReq assignementTDOReq){
+    public ResponseEntity<AssignementTDOReq> save(@Valid @RequestBody AssignementTDOReq assignementTDOReq){
         return new ResponseEntity<>(assignmentService.save(assignementTDOReq), HttpStatus.OK);
     }
 

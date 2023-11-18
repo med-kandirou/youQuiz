@@ -30,7 +30,7 @@ public class TestController {
     }
 
     @PostMapping
-    public ResponseEntity<TestDTOReq> save(@RequestBody @Valid TestDTOReq testDTOReq){
+    public ResponseEntity<TestDTOReq> save(@Valid @RequestBody TestDTOReq testDTOReq){
         return new ResponseEntity<>(testService.save(testDTOReq), HttpStatus.OK);
     }
 

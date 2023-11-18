@@ -41,7 +41,7 @@ public class ValidationController {
     }
 
     @PostMapping
-    public ResponseEntity<ValidationDTOReq> save(@RequestBody @Valid ValidationDTOReq validationDTOReq){
+    public ResponseEntity<ValidationDTOReq> save(@Valid @RequestBody ValidationDTOReq validationDTOReq){
         return new ResponseEntity<>(validationService.save(validationDTOReq), HttpStatus.OK);
     }
 
