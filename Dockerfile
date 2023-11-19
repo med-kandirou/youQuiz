@@ -1,7 +1,4 @@
-#FROM postgres:latest
-
-#ENV POSTGRES_PASSWORD=simokqndirou1234@
-#ENV POSTGRES_DB=YouQuiz
-#ENV POSTGRES_USER=postgres
-
-#EXPOSE 5432
+FROM openjdk:11
+COPY /target/YouQuiz-0.0.1-SNAPSHOT.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "/app.jar"]

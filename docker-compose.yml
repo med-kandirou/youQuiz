@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: your-postgres-container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: youquiz
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: simokandirou1234@
+
+  spring-app:
+    image: quiz_app
+    container_name: app-container
+    ports:
+      - "8080:8081"
+    depends_on:
+      - postgres
