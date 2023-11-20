@@ -20,7 +20,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
-@ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 class QuestionServiceTest {
     @Mock
@@ -64,18 +63,31 @@ class QuestionServiceTest {
         }catch (NotFoundException ex){}
     }
 
-    /*@Test
-    void delete() {
-        try{
-            doNothing().when(questionService);
-            questionService.deleteById(1);
-        }catch(NotFoundException ex){}
-    }*/
 
     @Test
     void findAll() {
         List<QuestionDTORes> list = new ArrayList<>();
         when(questionService.findAll()).thenReturn(list);
         assertEquals(0, list.size());
+    }
+
+    @Test
+    void findBySubjectId() {
+        QuestionDTORes questionDTORes1 = new QuestionDTORes();
+        QuestionDTORes questionDTORes2 = new QuestionDTORes();
+        List<QuestionDTORes> list = new ArrayList<>();
+        list.add(questionDTORes1);
+        list.add(questionDTORes2);
+        when(questionService.findBySubjectId(1)).thenReturn(list);
+        assertEquals(2, list.size());
+    }
+
+    @Test
+    void findByLevelId() {
+        QuestionDTORes questionDTORes1 = new QuestionDTORes();
+        List<QuestionDTORes> list = new ArrayList<>();
+        list.add(questionDTORes1);
+        when(questionService.findByLevelId(1)).thenReturn(list);
+        assertEquals(1, list.size());
     }
 }
