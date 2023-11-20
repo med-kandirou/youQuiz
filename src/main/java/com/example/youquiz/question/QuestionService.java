@@ -44,6 +44,7 @@ public class QuestionService implements IQuestion{
                 .collect(Collectors.toList());
     }
 
+    @Override
     public QuestionDTORes findById(int id) {
         Question question = questionRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + id));

@@ -1,7 +1,5 @@
 package com.example.youquiz.question;
 
-import com.example.youquiz.response.ResponseDTO;
-
 import java.util.List;
 
 public interface IQuestion {
