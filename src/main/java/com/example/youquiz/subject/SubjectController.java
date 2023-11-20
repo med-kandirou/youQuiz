@@ -30,7 +30,7 @@ public class SubjectController {
     }
 
     @PostMapping
-    public ResponseEntity<SubjectDTOReq> save(@RequestBody @Valid SubjectDTOReq subjectDTOReq){
+    public ResponseEntity<SubjectDTOReq> save(@Valid @RequestBody SubjectDTOReq subjectDTOReq){
         return new ResponseEntity<>(subjectService.save(subjectDTOReq), HttpStatus.OK);
     }
 

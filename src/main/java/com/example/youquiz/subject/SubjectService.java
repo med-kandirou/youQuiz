@@ -37,17 +37,19 @@ public class SubjectService implements ISubject {
 
     @Override
     public SubjectDTOReq save(SubjectDTOReq subjectDTOReq) {
-        Subject subject= modelMapper.map(subjectDTOReq, Subject.class);
-        subjectRepository.save(subject);
-        return modelMapper.map(subject, SubjectDTOReq.class);
+        subjectRepository.findById(subjectDTOReq.getParent_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id parent : " + subjectDTOReq.getParent_id()));
+        Subject subjectToSave= modelMapper.map(subjectDTOReq, Subject.class);
+        subjectRepository.save(subjectToSave);
+        return modelMapper.map(subjectToSave, SubjectDTOReq.class);
     }
 
     @Override
     public SubjectDTOResp deleteById(int id) {
-        Subject Subject = subjectRepository.findById(id)
+        Subject subject = subjectRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + id));
         subjectRepository.deleteById(id);
-        return modelMapper.map(Subject, SubjectDTOResp.class);
+        return modelMapper.map(subject, SubjectDTOResp.class);
     }
 
     @Override

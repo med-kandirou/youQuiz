@@ -12,5 +12,5 @@ public class SubjectDTOResp {
     private int id;
     private String title;
     private SubjectDTOReq parent;
-    private List<SubjectDTOReq> children;
+    //private List<SubjectDTOReq> children;
 }
