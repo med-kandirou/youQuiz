@@ -3,6 +3,8 @@ package com.example.youquiz.student;
 import com.example.youquiz.Exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,11 +24,9 @@ public class StudentService implements IStudent{
 
 
     @Override
-    public List<StudentDTO> findAll() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream()
-                .map(student -> modelMapper.map(student, StudentDTO.class))
-                .collect(Collectors.toList());
+    public Page<StudentDTO> findAll(Pageable pageable) {
+        Page<Student> students = studentRepository.findAll(pageable);
+        return students.map(student -> modelMapper.map(student, StudentDTO.class));
     }
 
     @Override

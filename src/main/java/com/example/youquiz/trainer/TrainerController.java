@@ -2,6 +2,8 @@ package com.example.youquiz.trainer;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,8 @@ public class TrainerController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TrainerDTO>> findAll(){
-        return new ResponseEntity<>(trainerService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<TrainerDTO>> findAll(Pageable pageable){
+        return new ResponseEntity<>(trainerService.findAll(pageable), HttpStatus.OK);
     }
 
     @PostMapping

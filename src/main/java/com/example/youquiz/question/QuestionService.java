@@ -12,6 +12,8 @@ import com.example.youquiz.test.TestDTOReq;
 import com.example.youquiz.trainer.Trainer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,11 +39,9 @@ public class QuestionService implements IQuestion{
     }
 
     @Override
-    public List<QuestionDTORes> findAll() {
-        List<Question> questions = questionRepository.findAll();
-        return questions.stream()
-                .map(question -> modelMapper.map(question, QuestionDTORes.class))
-                .collect(Collectors.toList());
+    public Page<QuestionDTORes> findAll(Pageable pageable) {
+        Page<Question> questionPage = questionRepository.findAll(pageable);
+        return questionPage.map(question -> modelMapper.map(question, QuestionDTORes.class));
     }
 
     @Override

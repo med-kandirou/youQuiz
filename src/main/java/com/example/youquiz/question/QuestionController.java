@@ -3,6 +3,8 @@ package com.example.youquiz.question;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,8 +23,8 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity<List<QuestionDTORes>> getAll(){
-        return new ResponseEntity<>(questionService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<QuestionDTORes>> getAll(Pageable pageable){
+        return new ResponseEntity<>(questionService.findAll(pageable), HttpStatus.OK);
     }
 
     @PostMapping

@@ -23,7 +23,10 @@ public class QuestionConfig {
             Question q2 = new Question(3, 1, "what is spring boot ?", QuestionType.TrueFalse,s1,level);
             level.setId(2);
             Question q3 = new Question(4, 2, "what is js?", QuestionType.TrueFalse, s2, level);
-            questionRepository.saveAll(List.of(q1, q2, q3));
+            Question q4 = new Question(4, 2, "what is ORM?", QuestionType.TrueFalse, s2, level);
+            Question q5 = new Question(4, 2, "what is ORM?", QuestionType.TrueFalse, s2, level);
+            Question q6 = new Question(4, 2, "what is ORM?", QuestionType.TrueFalse, s2, level);
+            questionRepository.saveAll(List.of(q1, q2, q3,q4,q5,q6));
         };
     }
 }

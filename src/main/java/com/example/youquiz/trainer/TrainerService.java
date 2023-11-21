@@ -3,6 +3,8 @@ package com.example.youquiz.trainer;
 import com.example.youquiz.Exception.ResourceNotFoundException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,11 +23,9 @@ public class TrainerService implements ITrainer{
 
 
     @Override
-    public List<TrainerDTO> findAll() {
-        List<Trainer> Trainers = trainerRepository.findAll();
-        return Trainers.stream()
-                .map(Trainer -> modelMapper.map(Trainer, TrainerDTO.class))
-                .collect(Collectors.toList());
+    public Page<TrainerDTO> findAll(Pageable pageable) {
+        Page<Trainer> Trainers = trainerRepository.findAll(pageable);
+        return Trainers.map(Trainer -> modelMapper.map(Trainer, TrainerDTO.class));
     }
 
     @Override
