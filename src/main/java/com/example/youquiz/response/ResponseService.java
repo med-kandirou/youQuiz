@@ -4,6 +4,8 @@ import com.example.youquiz.Exception.ResourceNotFoundException;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,11 +23,9 @@ public class ResponseService implements IResponse{
     }
     
     @Override
-    public List<ResponseDTO> findAll() {
-        List<Response> responses = responseRepository.findAll();
-        return responses.stream()
-                .map(response -> modelMapper.map(response, ResponseDTO.class))
-                .collect(Collectors.toList());
+    public Page<ResponseDTO> findAll(Pageable pageable) {
+        Page<Response> responses = responseRepository.findAll(pageable);
+        return responses.map(response -> modelMapper.map(response, ResponseDTO.class));
     }
 
     public ResponseDTO findById(int id) {

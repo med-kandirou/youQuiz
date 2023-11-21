@@ -2,6 +2,8 @@ package com.example.youquiz.response;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +26,8 @@ public class ResponseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ResponseDTO>> findAll(){
-        return new ResponseEntity<>(responseService.findAll(), HttpStatus.OK);
+    public ResponseEntity<Page<ResponseDTO>> findAll(Pageable pageable){
+        return new ResponseEntity<>(responseService.findAll(pageable), HttpStatus.OK);
     }
 
     @PostMapping
