@@ -33,6 +33,11 @@ public class TemporisationController {
         return new ResponseEntity<>(temporisationService.save(temporisationDTOReq), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<TemporisationDTOReq> update(@RequestBody @Valid TemporisationDTOReq temporisationDTOReq){
+        return new ResponseEntity<>(temporisationService.save(temporisationDTOReq), HttpStatus.OK);
+    }
+
     @DeleteMapping(path = "{temporisationId}")
     public ResponseEntity<TemporisationDTOReq> delete(@PathVariable int temporisationId){
         return new ResponseEntity<>(temporisationService.deleteById(temporisationId), HttpStatus.OK);

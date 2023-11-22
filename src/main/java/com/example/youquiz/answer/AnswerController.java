@@ -28,6 +28,11 @@ public class AnswerController {
         return new ResponseEntity<>(answerService.save(answerDTOReq), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<AnswerDTOReq> update(@Valid @RequestBody AnswerDTOReq answerDTOReq){
+        return new ResponseEntity<>(answerService.save(answerDTOReq), HttpStatus.OK);
+    }
+
     @GetMapping(path = {"{answertId}"})
     public ResponseEntity<AnswerDTORes> findById(@PathVariable("answertId") Integer answertId){
         return new ResponseEntity<>(answerService.findById(answertId), HttpStatus.OK);

@@ -10,6 +10,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.mockito.junit.jupiter.MockitoSettings;
 import org.mockito.quality.Strictness;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.webjars.NotFoundException;
 
 import java.util.ArrayList;
@@ -18,7 +20,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.BDDMockito.given;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @MockitoSettings(strictness = Strictness.LENIENT)
@@ -59,7 +60,7 @@ class QuestionServiceTest {
     }
 
     @Test
-    public void saveTest() {
+    public void save() {
 
         try {
             when(questionService.save(questionDto)).thenReturn(questionDto);
@@ -71,7 +72,7 @@ class QuestionServiceTest {
     }
 
     @Test
-    public void updateTest1() {
+    public void update() {
         try {
             given(questionRepository.findById(1)).willReturn(Optional.of(question));
             given(modelMapper.map(questionDto, Question.class)).willReturn(question);
@@ -83,7 +84,7 @@ class QuestionServiceTest {
     }
 
     @Test
-    public void findbyId2() {
+    public void findbyId() {
 
         given(questionRepository.findById(1)).willReturn(Optional.empty());
         assertThrows(RuntimeException.class, () -> questionService.findById(1));
@@ -100,21 +101,46 @@ class QuestionServiceTest {
         }
     }
 
-
-
     @Test
     public void findAll() {
-
+        Pageable pageable = PageRequest.of(0, 2);
         try {
             List<Question> questions = new ArrayList<>();
             questions.add(question);
             questions.add(question);
             questions.add(question);
             given(questionRepository.findAll()).willReturn(questions);
-            //assertEquals(3, questionService.findAll().size());
+            assertEquals(3, questionService.findAll(pageable).getTotalElements());
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+    }
 
+    @Test
+    public void findbySubjectId() {
+        try {
+            List<Question> questions = new ArrayList<>();
+            questions.add(question);
+            questions.add(question);
+            questions.add(question);
+            given(questionRepository.findBySubjectId(1)).willReturn(questions);
+            assertEquals(3, questionService.findBySubjectId(1).size());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    @Test
+    public void findbyLevelId() {
+        try {
+            List<Question> questions = new ArrayList<>();
+            questions.add(question);
+            questions.add(question);
+            questions.add(question);
+            given(questionRepository.findByLevelId(1)).willReturn(questions);
+            assertEquals(3, questionService.findByLevelId(1).size());
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

@@ -28,6 +28,11 @@ public class AssignmentController {
         return new ResponseEntity<>(assignmentService.save(assignementTDOReq), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<AssignementTDOReq> update(@Valid @RequestBody AssignementTDOReq assignementTDOReq){
+        return new ResponseEntity<>(assignmentService.save(assignementTDOReq), HttpStatus.OK);
+    }
+
     @GetMapping(path = {"{assignmentId}"})
     public ResponseEntity<AssignementTDORes> findById(@PathVariable("assignmentId") Integer assignmentId){
         return new ResponseEntity<>(assignmentService.findById(assignmentId), HttpStatus.OK);

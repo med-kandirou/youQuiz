@@ -68,6 +68,14 @@ public class AnswerService implements IAnswer{
 
     @Override
     public AnswerDTOReq update(AnswerDTOReq answerDTOReq) {
-        return null;
+        Answer answer= modelMapper.map(answerDTOReq, Answer.class);
+        Assignment assignment = assignmentRepository.findById(answerDTOReq.getAssignment_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + answerDTOReq.getAssignment_id()));
+        Validation validation = validationRepository.findById(answerDTOReq.getValidation_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + answerDTOReq.getValidation_id()));
+        answer.setAssignment(assignment);
+        answer.setValidation(validation);
+        answerRepository.save(answer);
+        return modelMapper.map(answer, AnswerDTOReq.class);
     }
 }

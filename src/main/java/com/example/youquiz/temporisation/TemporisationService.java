@@ -72,6 +72,14 @@ public class TemporisationService implements ITemporisation{
 
     @Override
     public TemporisationDTOReq update(TemporisationDTOReq temporisationDTOReq) {
-        return null;
+        Temporisation temporisation= modelMapper.map(temporisationDTOReq, Temporisation.class);
+        Question question = questionRepository.findById(temporisationDTOReq.getQuestion_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + temporisationDTOReq.getQuestion_id()));
+        Test test = testRepository.findById(temporisationDTOReq.getTest_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + temporisationDTOReq.getTest_id()));
+        temporisation.setQuestion(question);
+        temporisation.setTest(test);
+        temporisationRepository.save(temporisation);
+        return modelMapper.map(temporisation, TemporisationDTOReq.class);
     }
 }

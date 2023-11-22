@@ -74,7 +74,15 @@ public class QuestionService implements IQuestion{
 
     @Override
     public QuestionDTOReq update(QuestionDTOReq questionDTOReq) {
-        return null;
+        Question question= modelMapper.map(questionDTOReq, Question.class);
+        Subject sub = subjectRepository.findById(questionDTOReq.getSubject_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + questionDTOReq.getSubject_id()));
+        Level lvl = levelRepository.findById(questionDTOReq.getLevel_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + questionDTOReq.getLevel_id()));
+        question.setSubject(sub);
+        question.setLevel(lvl);
+        questionRepository.save(question);
+        return modelMapper.map(question, QuestionDTOReq.class);
     }
 
 

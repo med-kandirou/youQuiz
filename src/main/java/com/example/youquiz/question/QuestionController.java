@@ -32,6 +32,11 @@ public class QuestionController {
         return new ResponseEntity<>(questionService.save(QuestionDTOReq), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<QuestionDTOReq> update(@Valid @RequestBody QuestionDTOReq QuestionDTOReq){
+        return new ResponseEntity<>(questionService.save(QuestionDTOReq), HttpStatus.OK);
+    }
+
     @GetMapping(path = {"{questionId}"})
     public ResponseEntity<QuestionDTORes> findById(@PathVariable("questionId") Integer questionId){
         return new ResponseEntity<>(questionService.findById(questionId), HttpStatus.OK);

@@ -66,6 +66,14 @@ public class AssignmentService implements IAssignement{
 
     @Override
     public AssignementTDOReq update(AssignementTDOReq assignementTDOReq) {
-        return null;
+        Assignment assignment= modelMapper.map(assignementTDOReq, Assignment.class);
+        Test test = testRepository.findById(assignementTDOReq.getTest_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + assignementTDOReq.getTest_id()));
+        Student student = studentRepository.findById(assignementTDOReq.getStudent_id())
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + assignementTDOReq.getStudent_id()));
+        assignment.setStudent(student);
+        assignment.setTest(test);
+        assignmentRepository.save(assignment);
+        return modelMapper.map(assignment, AssignementTDOReq.class);
     }
 }
