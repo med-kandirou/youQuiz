@@ -1,1 +1,74 @@
-<img width="594" alt="dc" src="https://github.com/med-kandirou/youQuiz/assets/105118673/011cf3e9-3f20-4fb6-8c11-720653ca73a6">
+# YouQuiz
+## Project class digram 
+## Api documentation
+### Level
+endpoint| method | payload | description
+-|--------|-|-
+/api/level| `POST` |`{description:string, maxScore: int, minScore: int}`| create a level
+/api/level/{id}| `GET`  | `-` | find level by id
+/api/level/{id}| `PUT`  | `{description:string, maxScore: int, minScore: int}` | edit a level
+/api/level| `GET` | `-` | get all levels
+
+### Subject
+endpoint| method | payload                          | description
+-|--------|----------------------------------|-
+/api/level| `POST` | `{title:string, parend_id: int}` | create a subject
+/api/subject/{id}| `GET`  | `-`                              | find subject by id
+/api/subject/{id}| `PUT`  | `{title:string, parent_id: int}` | edit a subject
+/api/level| `GET` | `-`                              | get all subjects
+
+### Question
+endpoint| method | payload                                                                                                                                                                        | description                         
+-|-------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------
+/api/question| `POST` | `{responseNbr:int, correctResponseNbr: int, questionText: string, type: string, totalScore: double, subject_id: int, level_id: int, medias: Array{name:string, type: string}}` | create a question                   
+/api/question/{id}| `GET` | `-`                                                                                                                                                                            | find question by id                 
+/api/question/{id}| `PUT` | `{responseNbr:int, correctResponseNbr: int, questionText: string, type: string, totalScore: double, subject_id: int, level_id: int, medias: Array{name:string, type: string}}`| edit question                      
+/api/question/{id}/medias | `GET` | `-`                                                                                                                                                                            | get medias of a specific media 
+/api/question| `GET` | `-`                                                                                                                                                                            | get all questions
+/api/question/{id} | `DELETE` | `-` | delete question by id
+
+### Quiz
+endpoint | method | payload                                                                                                                                                     | description
+-| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
+/api/quizz | `POST` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int, subject_id: int}` | create a quiz
+/api/quizz | `GET` | `-`                                                                                                                                                         | final all quizzes
+/api/quiz/{id} | `GET` | `-`                                                                                                                                                         | final specific id |
+/api/quiz/{id} | `PUT` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int, subject_id: int}` | edit specific quiz
+/api/quiz/{id} | `DELETE` | `-` | delete a specific quiz
+
+### Response
+
+endpoint | method | payload                                                                                                                                                     | description
+ -| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
+  /api/response | `POST` | `{response: int, point: double, question_id: int}` | create a response and assigned to a question
+  /api/response/{id} | `PUT` | `{response: int, point: double, question_id: int}` | edit a specific response
+  /api/response/{id} | `GET` | `-` | find a speicifc response by id
+
+### Student
+
+endpoint | method | payload                                                                                                                                                     | description
+-| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
+/api/student | `POST` | `{firstName: string, lastName: string, birthday: localDate, address: string, dateOfInscription: localDate}` | create a student
+/api/student | `GET` | `-` | get all students
+/api/student/{id} | `GET` | `-` | get a specific student by id
+/api/student/{id} | `PUT` | `{firstName: string, lastName: string, birthday: localDate, address: string, dateOfInscription: localDate}` | edit a specific student
+/api/student/{id} | `DELETE` | `-` | delete a specific student
+
+### Trainer
+endpoint | method | payload                                                                                                                                                     | description
+-| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
+/api/trainer | `POST` | `{firstName: string, lastName: string, birthday: localDate, address: string}` | create a trainer
+/api/trainer | `GET` | `-`                                                                                         | get all trainers
+/api/trainer/{id} | `GET` | `-`                                                                                         | get a specific trainer by id
+/api/trainer/{id} | `PUT` | `{firstName: string, lastName: string, birthday: localDate, address: string}` | edit a specific trainer
+/api/trainer/{id} | `DELETE` | `-`                                                                                         | delete a specific trainer
+
+### AssignQuiz
+
+endpoint | method | payload                                                                                                                                                     | description
+-| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
+/api/assignQuiz | `POST` | `[{score: double, played: int, reason: string, result: string, debutDate: localDateTime, endDate: localDateTime, student_id: int, quiz_id: int}]` | create an assignquiz for one or multiple student
+/api/assignQuiz | `GET` | `-` | get all assignedQuiz
+/api/assignQuiz/{id} | `GET` | `-` | get specific assigned quiz
+/api/assignQuiz/{id} | `PUT` | `{score: double, played: int, reason: string, result: string, debutDate: localDateTime, endDate: localDateTime, student_id: int, quiz_id: int}` | update a specific assigned quiz
+/api/assignQuiz/{id} | `DELELTE` | `-` | delete a specific quiz
