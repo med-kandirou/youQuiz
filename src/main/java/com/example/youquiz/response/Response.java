@@ -20,7 +20,6 @@ public class Response {
     private int id;
     @NonNull
     private String textResponse;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Validation> validations;
 }
