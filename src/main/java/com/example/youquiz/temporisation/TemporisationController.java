@@ -1,5 +1,6 @@
 package com.example.youquiz.temporisation;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,13 +30,13 @@ public class TemporisationController {
     }
 
     @PostMapping
-    public ResponseEntity<TemporisationDTOReq> save(@RequestBody @Valid TemporisationDTOReq temporisationDTOReq){
+    public ResponseEntity<TemporisationDTOReq> save(@RequestBody @Valid TemporisationDTOReq temporisationDTOReq) throws RecordAlreadyExistsException {
         return new ResponseEntity<>(temporisationService.save(temporisationDTOReq), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<TemporisationDTOReq> update(@RequestBody @Valid TemporisationDTOReq temporisationDTOReq){
-        return new ResponseEntity<>(temporisationService.save(temporisationDTOReq), HttpStatus.OK);
+        return new ResponseEntity<>(temporisationService.update(temporisationDTOReq), HttpStatus.OK);
     }
 
     @DeleteMapping(path = "{temporisationId}")

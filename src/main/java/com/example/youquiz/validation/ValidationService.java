@@ -1,5 +1,6 @@
 package com.example.youquiz.validation;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import com.example.youquiz.Exception.ResourceNotFoundException;
 import com.example.youquiz.question.Question;
 import com.example.youquiz.question.QuestionRepository;
@@ -47,7 +48,11 @@ public class ValidationService implements IValidation{
     }
 
     @Override
-    public ValidationDTOReq save(ValidationDTOReq validationDTOReq) {
+    public ValidationDTOReq save(ValidationDTOReq validationDTOReq) throws RecordAlreadyExistsException {
+        boolean exist=validationRepository.existsByQuestionIdAndResponseId(validationDTOReq.getQuestion_id(), validationDTOReq.getResponse_id());
+        if (exist) {
+             throw new RecordAlreadyExistsException("question_id: " + validationDTOReq.getQuestion_id() + " and response_id: " + validationDTOReq.getResponse_id());
+        }
         Validation validation= modelMapper.map(validationDTOReq, Validation.class);
         Question question = questionRepository.findById(validationDTOReq.getQuestion_id())
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + validationDTOReq.getQuestion_id()));
@@ -58,6 +63,7 @@ public class ValidationService implements IValidation{
         validationRepository.save(validation);
         return modelMapper.map(validation, ValidationDTOReq.class);
     }
+
 
     @Override
     public ValidationDTOReq deleteById(int id) {

@@ -14,7 +14,6 @@ import java.time.LocalDate;
 
 public class StudentDTO extends Person {
     private int code;
-
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull(message = "dateInscription is required")
     @NonNull private LocalDate dateInscription;

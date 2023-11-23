@@ -10,11 +10,11 @@ import java.time.LocalDate;
 import java.util.List;
 
 
+@Data
 @Entity
 @Table
-@Data
-@NoArgsConstructor
 @RequiredArgsConstructor
+@NoArgsConstructor
 public class Trainer extends Person {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

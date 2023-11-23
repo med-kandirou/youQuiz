@@ -1,5 +1,6 @@
 package com.example.youquiz.validation;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import com.example.youquiz.assignment.AssignementTDORes;
 import com.example.youquiz.question.Question;
 import com.example.youquiz.test.TestDTO;
@@ -41,7 +42,7 @@ public class ValidationController {
     }
 
     @PostMapping
-    public ResponseEntity<ValidationDTOReq> save(@Valid @RequestBody ValidationDTOReq validationDTOReq){
+    public ResponseEntity<ValidationDTOReq> save(@Valid @RequestBody ValidationDTOReq validationDTOReq) throws RecordAlreadyExistsException {
         return new ResponseEntity<>(validationService.save(validationDTOReq), HttpStatus.OK);
     }
 

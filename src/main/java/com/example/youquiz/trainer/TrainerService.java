@@ -1,6 +1,8 @@
 package com.example.youquiz.trainer;
 
 import com.example.youquiz.Exception.ResourceNotFoundException;
+import com.example.youquiz.student.Student;
+import com.example.youquiz.student.StudentDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -37,8 +39,9 @@ public class TrainerService implements ITrainer{
 
     @Override
     public TrainerDTO save(TrainerDTO TrainerDTO) {
-        Trainer Trainer= modelMapper.map(TrainerDTO, Trainer.class);
-        return modelMapper.map(Trainer, TrainerDTO.class);
+        Trainer trainer= modelMapper.map(TrainerDTO, Trainer.class);
+        trainerRepository.save(trainer);
+        return modelMapper.map(trainer, TrainerDTO.class);
     }
 
     @Override

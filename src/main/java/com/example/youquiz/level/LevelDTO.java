@@ -23,6 +23,6 @@ public class LevelDTO {
     @NotNull(message = "pointMin is required")
     private Integer pointMin;
 
-    @NotNull(message = "pointMax is required")
+    @Min(value=0,message = "pointMax is required to be > 0")
     private Integer pointMax;
 }

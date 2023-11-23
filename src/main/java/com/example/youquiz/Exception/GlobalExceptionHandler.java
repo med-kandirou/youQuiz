@@ -33,4 +33,12 @@ public class GlobalExceptionHandler {
         });
         return errors;
     }
+
+    @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
+    @ExceptionHandler(RecordAlreadyExistsException.class)
+    public Map<String, String> handleRRecordAlreadyExistsException(RecordAlreadyExistsException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("recource already exist", ex.getMessage());
+        return errorResponse;
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.youquiz.assignment;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,13 +25,13 @@ public class AssignmentController {
     }
 
     @PostMapping
-    public ResponseEntity<AssignementTDOReq> save(@Valid @RequestBody AssignementTDOReq assignementTDOReq){
+    public ResponseEntity<AssignementTDOReq> save(@Valid @RequestBody AssignementTDOReq assignementTDOReq) throws RecordAlreadyExistsException {
         return new ResponseEntity<>(assignmentService.save(assignementTDOReq), HttpStatus.OK);
     }
 
     @PutMapping
     public ResponseEntity<AssignementTDOReq> update(@Valid @RequestBody AssignementTDOReq assignementTDOReq){
-        return new ResponseEntity<>(assignmentService.save(assignementTDOReq), HttpStatus.OK);
+        return new ResponseEntity<>(assignmentService.update(assignementTDOReq), HttpStatus.OK);
     }
 
     @GetMapping(path = {"{assignmentId}"})

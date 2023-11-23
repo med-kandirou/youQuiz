@@ -1,5 +1,6 @@
 package com.example.youquiz.temporisation;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import com.example.youquiz.Exception.ResourceNotFoundException;
 import com.example.youquiz.question.Question;
 import com.example.youquiz.question.QuestionRepository;
@@ -50,7 +51,12 @@ public class TemporisationService implements ITemporisation{
     }
 
     @Override
-    public TemporisationDTOReq save(TemporisationDTOReq temporisationDTOReq) {
+    public TemporisationDTOReq save(TemporisationDTOReq temporisationDTOReq) throws RecordAlreadyExistsException {
+        if (temporisationRepository.existsByQuestionIdAndTestId(
+                temporisationDTOReq.getQuestion_id(), temporisationDTOReq.getTest_id())) {
+            throw new RecordAlreadyExistsException("Record already exists for question_id: " +
+                    temporisationDTOReq.getQuestion_id() + " and test_id: " + temporisationDTOReq.getTest_id());
+        }
         Temporisation temporisation= modelMapper.map(temporisationDTOReq, Temporisation.class);
         Question question = questionRepository.findById(temporisationDTOReq.getQuestion_id())
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + temporisationDTOReq.getQuestion_id()));

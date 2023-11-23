@@ -1,5 +1,6 @@
 package com.example.youquiz.assignment;
 
+import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import com.example.youquiz.Exception.ResourceNotFoundException;
 import com.example.youquiz.student.Student;
 import com.example.youquiz.student.StudentRepository;
@@ -44,7 +45,12 @@ public class AssignmentService implements IAssignement{
     }
 
     @Override
-    public AssignementTDOReq save(AssignementTDOReq assignementTDOReq) {
+    public AssignementTDOReq save(AssignementTDOReq assignementTDOReq) throws RecordAlreadyExistsException {
+        if (assignmentRepository.existsByTestIdAndStudentCode(
+                assignementTDOReq.getTest_id(), assignementTDOReq.getStudent_id())) {
+            throw new RecordAlreadyExistsException("Record already exists for test_id: " +
+                    assignementTDOReq.getTest_id() + " and student_id: " + assignementTDOReq.getStudent_id());
+        }
         Assignment assignment= modelMapper.map(assignementTDOReq, Assignment.class);
         Test test = testRepository.findById(assignementTDOReq.getTest_id())
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + assignementTDOReq.getTest_id()));
