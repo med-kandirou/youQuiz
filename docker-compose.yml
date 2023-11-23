@@ -3,13 +3,15 @@ version: '3'
 services:
   postgres:
     image: postgres:latest
-    container_name: your-postgres-container
+    container_name: postgres-container
     ports:
       - "5432:5432"
     environment:
       POSTGRES_DB: youquiz
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: simokandirou1234@
+    networks:
+      - app
 
   spring-app:
     build:
@@ -20,3 +22,7 @@ services:
       - "8080:8080"
     depends_on:
       - postgres
+    networks:
+      - app
+networks:
+  app:
