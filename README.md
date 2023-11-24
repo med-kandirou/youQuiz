@@ -29,11 +29,11 @@ endpoint| method | payload                                                      
 ### Quiz
 endpoint | method | payload                                                                                                                                                     | description
 -| - |-------------------------------------------------------------------------------------------------------------------------------------------------------------| - 
-/api/quizz | `POST` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int, subject_id: int}` | create a quiz
-/api/quizz | `GET` | `-`                                                                                                                                                         | final all quizzes
-/api/quiz/{id} | `GET` | `-`                                                                                                                                                         | final specific id |
-/api/quiz/{id} | `PUT` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int, subject_id: int}` | edit specific quiz
-/api/quiz/{id} | `DELETE` | `-` | delete a specific quiz
+/api/test | `POST` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int}` | create a Test
+/api/test | `GET` | `-`                                                                                                                                                         | final all Tests
+/api/test/{id} | `GET` | `-`                                                                                                                                                         | final specific id |
+/api/test/{id} | `PUT` | `{successScore: double, canViewAnswers: double, showFinalResults: boolean, numberOfChances: int, remarks: string, trainer_id: int}` | edit specific Test
+/api/test/{id} | `DELETE` | `-` | delete a specific test
 
 ### Response
 

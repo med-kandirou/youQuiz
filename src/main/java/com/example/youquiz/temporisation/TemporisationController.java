@@ -30,7 +30,7 @@ public class TemporisationController {
     }
 
     @PostMapping
-    public ResponseEntity<TemporisationDTOReq> save(@RequestBody @Valid TemporisationDTOReq temporisationDTOReq) throws RecordAlreadyExistsException {
+    public ResponseEntity<TemporisationDTOReq> save(@Valid @RequestBody TemporisationDTOReq temporisationDTOReq) throws RecordAlreadyExistsException {
         return new ResponseEntity<>(temporisationService.save(temporisationDTOReq), HttpStatus.OK);
     }
 
