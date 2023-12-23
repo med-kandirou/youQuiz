@@ -88,4 +88,14 @@ public class TemporisationService implements ITemporisation{
         temporisationRepository.save(temporisation);
         return modelMapper.map(temporisation, TemporisationDTOReq.class);
     }
+
+    @Override
+    public List<TemporisationDTORes> findByTest(int testId) {
+        Test test = testRepository.findById(testId)
+                .orElseThrow(() -> new ResourceNotFoundException("id test : " + testId));
+        List<Temporisation> tmps=temporisationRepository.findByTest(test);
+        return tmps.stream()
+                .map(temp -> modelMapper.map(temp, TemporisationDTORes.class))
+                .collect(Collectors.toList());
+    }
 }

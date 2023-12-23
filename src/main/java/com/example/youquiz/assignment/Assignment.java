@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -21,12 +22,13 @@ public class Assignment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @NonNull private LocalDate dateStart;
-    @NonNull private LocalDate dateEnd;
+    @NonNull private LocalDateTime dateStart;
+    @NonNull private LocalDateTime dateEnd;
     @Transient
     @NonNull private LocalDate dure;
     @NonNull private double score;
-
+    @NonNull private boolean result;
+    @NonNull private boolean passed;
     @ManyToOne
     @JoinColumn(name = "test_id")
     private Test test;

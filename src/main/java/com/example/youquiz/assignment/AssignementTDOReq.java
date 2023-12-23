@@ -5,6 +5,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -15,14 +16,20 @@ public class AssignementTDOReq {
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull(message = "Date end is required")
-    private LocalDate dateStart;
+    private LocalDateTime dateStart;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull(message = "Date end is required")
-    private LocalDate dateEnd;
+    private LocalDateTime dateEnd;
 
     @NotNull(message = "score is required")
     private Double score;
+
+    @NotNull(message = "result is required")
+    @NonNull private boolean result;
+
+    @NotNull(message = "isPassed is required")
+    @NonNull private boolean passed;
 
     @NotNull(message = "Test ID is required")
     private Integer test_id;

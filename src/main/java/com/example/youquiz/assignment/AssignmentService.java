@@ -82,4 +82,22 @@ public class AssignmentService implements IAssignement{
         assignmentRepository.save(assignment);
         return modelMapper.map(assignment, AssignementTDOReq.class);
     }
+
+    @Override
+    public List<AssignementTDORes> findByStudent(int studendId,boolean isPassed) {
+        Student student =studentRepository.findById(studendId)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + studendId));
+        List<Assignment> assignements=assignmentRepository.findAssignmentByStudent(student.getCode(),isPassed);
+        return assignements.stream()
+                .map(assi -> modelMapper.map(assi, AssignementTDORes.class))
+                .collect(Collectors.toList());
+    }
+
+    public AssignementTDORes changeToPassed(Integer assignmentId) {
+        Assignment assignment = assignmentRepository.findById(assignmentId)
+                .orElseThrow(() -> new ResourceNotFoundException("id : " + assignmentId));
+        assignment.setPassed(true);
+        assignmentRepository.save(assignment);
+        return modelMapper.map(assignment, AssignementTDORes.class);
+    }
 }

@@ -1,9 +1,11 @@
 package com.example.youquiz.media;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 
 public interface IMedia {
-    List<MediaDTORes> findAll();
+    Page<MediaDTORes> findAll(Pageable pageable);
     MediaDTORes findById(int id);
     MediaDTOReq save(MediaDTOReq mediaDTOReq);
     MediaDTORes deleteById(int id);

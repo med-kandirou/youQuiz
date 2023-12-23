@@ -8,6 +8,8 @@ import com.example.youquiz.test.TestDTOReq;
 import com.example.youquiz.trainer.Trainer;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,11 +32,9 @@ public class MediaService implements IMedia{
     }
 
     @Override
-    public List<MediaDTORes> findAll() {
-        List<Media> medias = mediaRepository.findAll();
-        return medias.stream()
-                .map(media -> modelMapper.map(media, MediaDTORes.class))
-                .collect(Collectors.toList());
+    public Page<MediaDTORes> findAll(Pageable pageable) {
+        Page<Media> medias = mediaRepository.findAll(pageable);
+        return medias.map(media -> modelMapper.map(media, MediaDTORes.class));
     }
 
     @Override

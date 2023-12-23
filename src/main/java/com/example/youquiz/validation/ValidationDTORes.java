@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ValidationDTORes {
     private int id;
-    @NonNull private double point;
+    //@NonNull private double point;
     @NonNull private ResponseDTO response;
     @NonNull private QuestionDTORes question;
 }

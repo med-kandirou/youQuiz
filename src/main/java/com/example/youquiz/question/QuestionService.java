@@ -39,6 +39,15 @@ public class QuestionService implements IQuestion{
     }
 
     @Override
+    public List<QuestionDTORes> all() {
+        List<Question> questions = questionRepository.findAll();
+        return questions.stream()
+                .map(question -> modelMapper.map(question, QuestionDTORes.class))
+                .collect(Collectors.toList());
+    }
+
+
+    @Override
     public Page<QuestionDTORes> findAll(Pageable pageable) {
         Page<Question> questionPage = questionRepository.findAll(pageable);
         return questionPage.map(question -> modelMapper.map(question, QuestionDTORes.class));

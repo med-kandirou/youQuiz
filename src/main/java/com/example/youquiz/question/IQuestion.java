@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface IQuestion {
+    List<QuestionDTORes> all();
     Page<QuestionDTORes> findAll(Pageable pageable);
     QuestionDTORes findById(int id);
     QuestionDTOReq save(QuestionDTOReq questionDTOReq);

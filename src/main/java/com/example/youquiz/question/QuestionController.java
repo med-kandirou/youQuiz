@@ -22,6 +22,12 @@ public class QuestionController {
         this.questionService=questionService;
     }
 
+
+    @GetMapping(path = "/all")
+    public ResponseEntity<List<QuestionDTORes>> all(){
+        return new ResponseEntity<>(questionService.all(), HttpStatus.OK);
+    }
+
     @GetMapping
     public ResponseEntity<Page<QuestionDTORes>> getAll(Pageable pageable){
         return new ResponseEntity<>(questionService.findAll(pageable), HttpStatus.OK);

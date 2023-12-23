@@ -3,6 +3,7 @@ package com.example.youquiz.validation;
 
 import com.example.youquiz.Exception.RecordAlreadyExistsException;
 import com.example.youquiz.assignment.AssignementTDORes;
+import com.example.youquiz.question.Question;
 
 import java.util.List;
 
@@ -13,4 +14,5 @@ public interface IValidation {
     ValidationDTOReq deleteById(int id);
     ValidationDTOReq update(ValidationDTOReq validationDTOReq);
     List<ValidationDTORes> findValidationByQuestion(int questionId);
+    List<ValidationDTORes> findByQuestion(int questionId);
 }

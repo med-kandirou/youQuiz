@@ -7,11 +7,15 @@ import com.example.youquiz.question.QuestionRepository;
 import com.example.youquiz.response.Response;
 import com.example.youquiz.response.ResponseRepository;
 import com.example.youquiz.student.StudentRepository;
+import com.example.youquiz.temporisation.Temporisation;
+import com.example.youquiz.temporisation.TemporisationDTORes;
+import com.example.youquiz.test.Test;
 import com.example.youquiz.trainer.TrainerRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -86,8 +90,26 @@ public class ValidationService implements IValidation{
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<ValidationDTORes> findByQuestion(int questionId) {
+        Question question = questionRepository.findById(questionId)
+                .orElseThrow(() -> new ResourceNotFoundException("id question : " + questionId));
+        List<Validation> tmps=validationRepository.findByQuestion(question);
+        return tmps.stream()
+                .map(temp -> modelMapper.map(temp, ValidationDTORes.class))
+                .collect(Collectors.toList());
+    }
 
 
-
+    public double verifyResponses(List<Integer> validations) {
+        double point=0.0;
+        Validation validation=null;
+        for (Integer vId:validations) {
+            validation=validationRepository.findById(vId)
+                    .orElseThrow(() -> new ResourceNotFoundException("id validation : " + vId));
+            point+=validation.getPoint();
+        }
+        return point;
+    }
 
 }

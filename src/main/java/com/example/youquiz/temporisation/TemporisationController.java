@@ -43,4 +43,9 @@ public class TemporisationController {
     public ResponseEntity<TemporisationDTOReq> delete(@PathVariable int temporisationId){
         return new ResponseEntity<>(temporisationService.deleteById(temporisationId), HttpStatus.OK);
     }
+
+    @GetMapping(path = "byTest/{testId}")
+    public ResponseEntity<List<TemporisationDTORes>> findByTest(@PathVariable int testId){
+        return new ResponseEntity<>(temporisationService.findByTest(testId), HttpStatus.OK);
+    }
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/api/Validation")
@@ -51,4 +52,15 @@ public class ValidationController {
         return new ResponseEntity<>(validationService.deleteById(validationId), HttpStatus.OK);
     }
 
+
+    @GetMapping(path = "/byQuestion/{questionId}")
+    public ResponseEntity<List<ValidationDTORes>> findByQuestion(@PathVariable int questionId){
+        return new ResponseEntity<>(validationService.findByQuestion(questionId), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/verifyResponses")
+    public ResponseEntity<Double> validateResponses(@RequestBody Map<String, List<Integer>> request){
+        List<Integer> idsValidations = request.get("ids_validations");
+        return new ResponseEntity<>(validationService.verifyResponses(idsValidations), HttpStatus.OK);
+    }
 }

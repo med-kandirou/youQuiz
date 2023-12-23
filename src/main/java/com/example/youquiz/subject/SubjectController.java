@@ -34,6 +34,10 @@ public class SubjectController {
         return new ResponseEntity<>(subjectService.save(subjectDTOReq), HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<SubjectDTOReq> update(@Valid @RequestBody SubjectDTOReq subjectDTOReq){
+        return new ResponseEntity<>(subjectService.save(subjectDTOReq), HttpStatus.OK);
+    }
     @DeleteMapping(path = "{subjectId}")
     public ResponseEntity<SubjectDTOResp> delete(@PathVariable int subjectId){
         return new ResponseEntity<>(subjectService.deleteById(subjectId), HttpStatus.OK);

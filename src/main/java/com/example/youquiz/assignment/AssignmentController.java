@@ -43,4 +43,14 @@ public class AssignmentController {
     public ResponseEntity<AssignementTDORes> deleteById(@PathVariable("assignmentId") Integer assignmentId){
         return new ResponseEntity<>(assignmentService.deleteById(assignmentId), HttpStatus.OK);
     }
+
+    @GetMapping(path = {"byStudent/{studentId}/{isPassed}"})
+    public ResponseEntity<List<AssignementTDORes>> byStudentIdandStatus(@PathVariable("studentId") Integer studentId,@PathVariable("isPassed") boolean isPassed){
+        return new ResponseEntity<>(assignmentService.findByStudent(studentId,isPassed), HttpStatus.OK);
+    }
+
+    @GetMapping(path = {"{assignmentId}/passed"})
+    public ResponseEntity<AssignementTDORes> changeToPassed(@PathVariable("assignmentId") Integer assignmentId){
+        return new ResponseEntity<>(assignmentService.changeToPassed(assignmentId), HttpStatus.OK);
+    }
 }
