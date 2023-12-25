@@ -93,10 +93,11 @@ public class AssignmentService implements IAssignement{
                 .collect(Collectors.toList());
     }
 
-    public AssignementTDORes changeToPassed(Integer assignmentId) {
+    public AssignementTDORes changeToPassed(Integer assignmentId,Boolean result) {
         Assignment assignment = assignmentRepository.findById(assignmentId)
                 .orElseThrow(() -> new ResourceNotFoundException("id : " + assignmentId));
         assignment.setPassed(true);
+        assignment.setResult(result);
         assignmentRepository.save(assignment);
         return modelMapper.map(assignment, AssignementTDORes.class);
     }

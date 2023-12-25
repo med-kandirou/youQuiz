@@ -49,8 +49,8 @@ public class AssignmentController {
         return new ResponseEntity<>(assignmentService.findByStudent(studentId,isPassed), HttpStatus.OK);
     }
 
-    @GetMapping(path = {"{assignmentId}/passed"})
-    public ResponseEntity<AssignementTDORes> changeToPassed(@PathVariable("assignmentId") Integer assignmentId){
-        return new ResponseEntity<>(assignmentService.changeToPassed(assignmentId), HttpStatus.OK);
+    @GetMapping(path = {"{assignmentId}/passed/{result}"})
+    public ResponseEntity<AssignementTDORes> changeToPassed(@PathVariable("assignmentId") Integer assignmentId,@PathVariable("assignmentId") Boolean result){
+        return new ResponseEntity<>(assignmentService.changeToPassed(assignmentId,result), HttpStatus.OK);
     }
 }
