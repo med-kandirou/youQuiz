@@ -13,8 +13,11 @@ public class StudentConfig {
     CommandLineRunner commandLineRunnerStudent(StudentRepository repository){
         return args -> {
             Student student1 = new Student("John", "Doe", LocalDate.of(1995, 5, 15), "taza", LocalDate.now());
-            Student student2 = new Student("med", "kandirou", LocalDate.of(1995, 5, 15), "fes", LocalDate.now());
-            repository.saveAll(List.of(student1,student2));
+            Student student2 = new Student("med", "kandirou", LocalDate.of(2001, 5, 15), "fes", LocalDate.now());
+            Student student3 = new Student("Amine", "Hatim", LocalDate.of(1995, 5, 15), "jamma", LocalDate.now());
+            Student student4 = new Student("Oussama", "haddi", LocalDate.of(2000, 5, 15), "khenifra", LocalDate.now());
+
+            repository.saveAll(List.of(student1,student2,student3,student4));
         };
     }
 }
