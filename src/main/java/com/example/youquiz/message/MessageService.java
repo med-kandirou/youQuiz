@@ -63,14 +63,14 @@ public class MessageService implements IMessage{
     public MessageDTOres save(MessageDTOreq messageDTOreq) {
         Message message= modelMapper.map(messageDTOreq, Message.class);
         Room Room = roomRepository.findById(messageDTOreq.getParticipateID().getRoom().getId())
-                .orElseThrow(() -> new ResourceNotFoundException("id : " + messageDTOreq.getParticipateID().getRoom().getId()));
+                .orElseThrow(() -> new ResourceNotFoundException("id room: " + messageDTOreq.getParticipateID().getRoom().getId()));
         Student student = studentRepository.findById(messageDTOreq.getParticipateID().getStudent().getCode())
-                .orElseThrow(() -> new ResourceNotFoundException("id : " + messageDTOreq.getParticipateID().getStudent().getCode()));
+                .orElseThrow(() -> new ResourceNotFoundException("code student : " + messageDTOreq.getParticipateID().getStudent().getCode()));
         ParticipateID pId= new ParticipateID();
         pId.setRoom(Room);
         pId.setStudent(student);
         Participate participate = participateRepository.findById(pId)
-                .orElseThrow(() -> new ResourceNotFoundException("id : " + messageDTOreq.getParticipateID().getStudent().getCode()));
+                .orElseThrow(() -> new ResourceNotFoundException("id participate : " + messageDTOreq.getParticipateID().getStudent().getCode()));
         message.setParticipate(participate);
         messageRepository.save(message);
         return modelMapper.map(message, MessageDTOres.class);

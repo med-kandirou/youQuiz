@@ -82,13 +82,13 @@ public class ParticipateService implements IParticipate{
         return null;
     }
 
-
+    @Override
     public List<RoomDTOres> findParticipatesByStudent(Integer studentId, String status){
         List<Room> rooms=null;
         if(Objects.equals(status, "in")){
             rooms=participateRepository.findParticipatesByStudentId(studentId);
         }else{
-            //not werked yet need some changes
+            //not worked yet need some changes
             rooms=participateRepository.findParticipatesByStudentNotIn(studentId);
         }
         return rooms.stream()
