@@ -62,4 +62,10 @@ public class StudentService implements IStudent{
         studentRepository.save(student);
         return modelMapper.map(student, StudentDTO.class);
     }
+
+    public StudentDTO login(String firstName,String password) {
+        Student std= studentRepository.findStudentByFirstNameAndPassword(firstName,password)
+                .orElseThrow(() -> new ResourceNotFoundException("name or last name invalid"));
+        return modelMapper.map(std, StudentDTO.class);
+    }
 }

@@ -2,7 +2,9 @@ package com.example.youquiz.student;
 
 
 
+import io.micrometer.core.ipc.http.HttpSender;
 import jakarta.validation.Valid;
+import org.apache.coyote.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -42,6 +45,11 @@ public class StudentController {
     @DeleteMapping(path = "{studentId}")
     public ResponseEntity<StudentDTO> delete(@PathVariable int studentId){
         return new ResponseEntity<>(studentService.deleteById(studentId), HttpStatus.OK);
+    }
+
+    @PostMapping(path = "/login")
+    public ResponseEntity<StudentDTO> login(@RequestBody Map<String, String> request){
+        return new ResponseEntity<>(studentService.login(request.get("firstName"),request.get("password")), HttpStatus.OK);
     }
 
 }

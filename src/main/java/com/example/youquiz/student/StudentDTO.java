@@ -17,4 +17,5 @@ public class StudentDTO extends Person {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     @NotNull(message = "dateInscription is required")
     @NonNull private LocalDate dateInscription;
+    @NonNull private String password;
 }
