@@ -22,8 +22,7 @@ public class ChatController {
     @MessageMapping("/chat.sendMessage/{roomId}")
     @SendTo("/room/{roomId}")
     public MessageDTOres send(MessageDTOreq message, @DestinationVariable int roomId){
-        MessageDTOres msg= messageService.save(message);
-        return msg;
+        return messageService.save(message);
     }
 
 }
